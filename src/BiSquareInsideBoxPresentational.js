@@ -1,5 +1,5 @@
 import {useStyle} from './hooks'
-
+import React from 'react'
 
 const Square = ({w, h, scale, i}) => {
     const {squareStyle} = useStyle(w, h, scale)
