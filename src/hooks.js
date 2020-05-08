@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import {sinify, divideScale} from './utils'
 
 export const useAnimatedScale = (scGap, delay) => {
     const [scale, setScale] = useState(0)
@@ -33,12 +34,42 @@ export const useDimension = () => {
         }
         return () => {
             window.onresize = () => {
-              
+
             }
         }
     })
     return {
         w,
         h
+    }
+}
+
+export const useStyle = (w, h, scale) => {
+    const fixedW = w / 3
+    const fixedH = h / 8
+    const color = '#4CAF50'
+    const position = 'absolute'
+    const border = `${Math.min(w, h) / 60}px solid ${color}`
+    const background = color
+    return {
+        staticBlockStyle() {
+            const width = `${fixedW}px`
+            const height = `${fixedH}px`
+            const left = `${w / 2 - fixedW / 2}px`
+            const top = `${h / 2 - fixedH / 2}px`
+            return {width, left, top, position, left, top, border}
+        },
+        squareStyle(i) {
+            const sf = sinify(scale)
+            const sfi = divideScale(sf, i, 2)
+            const sj = 2 * i - 1
+            const sw = h / 8
+            const width = `${sw}px`
+            const height = `${fixedH}px`
+            const x = w / 2 + (fixedW / 2 - sw) * sfi * sj
+            const left = `${x}px`
+            const top = `${h / 2 - fixedH / 2}px`
+            return {position, left, top, width, height, background}
+        }
     }
 }
