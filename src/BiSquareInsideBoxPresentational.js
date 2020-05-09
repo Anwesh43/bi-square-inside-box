@@ -14,7 +14,7 @@ const Box = ({w, h, scale}) => {
 }
 const BiSquareInsideBoxPresentational = ({w, h, scale, onClick}) => {
     return (<div onClick = {onClick}>
-              {[0, 1].map(i => <Square w = {w} h = {h} scale = {scale} i = {i} key = {`square_${i}`}/>})}
+              {[0, 1].map(i => <Square w = {w} h = {h} scale = {scale} i = {i} key = {`square_${i}`}/>)}
               <Box w = {w} h = {h} scale = {scale}/>
           </div>)
 }

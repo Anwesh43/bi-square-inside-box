@@ -57,7 +57,7 @@ export const useStyle = (w, h, scale) => {
             const height = `${fixedH}px`
             const left = `${w / 2 - fixedW / 2}px`
             const top = `${h / 2 - fixedH / 2}px`
-            return {width, left, top, position, left, top, border}
+            return {left, top, position, height, width, border}
         },
         squareStyle(i) {
             const sf = sinify(scale)
@@ -66,7 +66,7 @@ export const useStyle = (w, h, scale) => {
             const sw = h / 8
             const width = `${sw}px`
             const height = `${fixedH}px`
-            const x = w / 2 + (fixedW / 2 - sw) * sfi * sj
+            const x = w / 2 + -sw + sw * i + (fixedW / 2 - sw) * sfi * sj
             const left = `${x}px`
             const top = `${h / 2 - fixedH / 2}px`
             return {position, left, top, width, height, background}
